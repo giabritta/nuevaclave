@@ -6,7 +6,7 @@
   {%- assign _f = include.ev.data_fine -%}
   {%- assign _gf = _f | date: "%w" | plus: 0 -%}
   {%- assign _mf = _f | date: "%-m" | minus: 1 -%}
-  dal {{ site.data.it.giorni[_g] }} {{ _d | date: "%-d" }}{% if _m != _mf %} {{ site.data.it.mesi[_m] }}{% endif %} al {{ site.data.it.giorni[_gf] }} {{ _f | date: "%-d" }} {{ site.data.it.mesi[_mf] }} {{ _f | date: "%Y" }}
+  da {{ site.data.it.giorni[_g] }} {{ _d | date: "%-d" }}{% if _m != _mf %} {{ site.data.it.mesi[_m] }}{% endif %} a {{ site.data.it.giorni[_gf] }} {{ _f | date: "%-d" }} {{ site.data.it.mesi[_mf] }} {{ _f | date: "%Y" }}
 {%- else -%}
   {{ site.data.it.giorni[_g] }} {{ _d | date: "%-d" }} {{ site.data.it.mesi[_m] }} {{ _d | date: "%Y" }}
 {%- endif -%}
