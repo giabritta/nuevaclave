@@ -1,0 +1,19 @@
+{%- capture wa_prova -%}https://wa.me/{{ site.contatti.whatsapp }}?text={{ "Ciao! Vorrei prenotare una lezione di prova alla Dance Academy Nueva Clave." | url_encode }}{%- endcapture -%}
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Dance Academy Nueva Clave – Home">
+      <img src="{{ '/assets/img/logo-nuevaclave.png' | relative_url }}" alt="Nueva Clave Dance Academy" width="160" height="70">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr">Menu</span>
+    </button>
+    <nav id="nav" class="nav" data-nav>
+      <a href="{{ '/#corsi' | relative_url }}">Corsi</a>
+      <a href="{{ '/#chi-siamo' | relative_url }}">Chi siamo</a>
+      <a href="{{ '/eventi/' | relative_url }}">Eventi</a>
+      <a href="{{ '/#galleria' | relative_url }}">Galleria</a>
+      <a href="{{ '/#contatti' | relative_url }}">Contatti</a>
+      <a class="btn btn-gold btn-sm" href="{{ wa_prova }}" target="_blank" rel="noopener">Prova gratuita</a>
+    </nav>
+  </div>
+</header>

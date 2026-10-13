@@ -1,0 +1,220 @@
+---
+layout: default
+body_class: page-home
+---
+{%- capture wa_prova -%}https://wa.me/{{ site.contatti.whatsapp }}?text={{ "Ciao! Vorrei prenotare una lezione di prova alla Dance Academy Nueva Clave." | url_encode }}{%- endcapture -%}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide is-active" style="background-image:url('{{ '/assets/img/show-latino.jpg' | relative_url }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ '/assets/img/abbraccio-kizomba.jpg' | relative_url }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ '/assets/img/festival-danza-tango.jpg' | relative_url }}')"></div>
+  </div>
+  <div class="wrap hero-content">
+    <p class="eyebrow">Scuola di ballo · Gradisca d'Isonzo (GO)</p>
+    <h1 class="hero-title">Balla con noi.<br><em>La tua nuova passione</em> inizia qui.</h1>
+    <p class="hero-sub">Salsa, bachata, kizomba, tango argentino e balli da sala in un'accademia con tre sale e uno staff di oltre 20 persone. <strong>Non serve essere in coppia.</strong></p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="{{ wa_prova }}" target="_blank" rel="noopener">Prenota la lezione di prova</a>
+      <a class="btn btn-line" href="#corsi">Scopri i corsi</a>
+    </div>
+    <ul class="hero-stats">
+      <li><b>15+</b><span>anni di ballo a Gradisca</span></li>
+      <li><b>3</b><span>sale da ballo</span></li>
+      <li><b>10+</b><span>discipline per adulti e ragazzi</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROSSIMI EVENTI (in evidenza) -->
+<section class="strip-events" data-next-events>
+  <div class="wrap strip-inner">
+    <p class="strip-label">Prossimo evento</p>
+    {% assign eventi_asc = site.eventi | sort: 'date' %}
+    {% for ev in eventi_asc %}
+      {%- assign fine = ev.data_fine | default: ev.date -%}
+      <a class="strip-item" href="{{ ev.url | relative_url }}" data-end="{{ fine | date: '%Y-%m-%d' }}" hidden>
+        <img src="{{ ev.locandina | relative_url }}" alt="" loading="lazy">
+        <span><b>{{ ev.title }}</b><small>{% include data-evento.html ev=ev %} · {{ ev.citta }}</small></span>
+        <span class="strip-arrow">→</span>
+      </a>
+    {% endfor %}
+    <a class="strip-all" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a>
+  </div>
+</section>
+
+<!-- PERCHE' NOI -->
+<section class="section why">
+  <div class="wrap why-grid">
+    <div class="why-item">
+      <span class="why-n">01</span>
+      <h3>Vieni anche da solo/a</h3>
+      <p>Nelle nostre lezioni si cambia partner a rotazione: non serve essere in coppia per iniziare.</p>
+    </div>
+    <div class="why-item">
+      <span class="why-n">02</span>
+      <h3>Lezione di prova</h3>
+      <p>Prima di iscriverti vieni a provare: scrivici su WhatsApp e ti consigliamo il corso giusto per il tuo livello.</p>
+    </div>
+    <div class="why-item">
+      <span class="why-n">03</span>
+      <h3>Si balla anche fuori</h3>
+      <p>Serate in piazza, milonghe, festival e show: con noi la pista non finisce mai in sala.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CORSI -->
+<section class="section" id="corsi">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Per bambini, ragazzi e adulti</p>
+        <h2 class="h-display">I nostri corsi</h2>
+      </div>
+      <p class="section-lead">Dal principiante assoluto al livello avanzato, ballo sociale e agonistico. Lezioni serali dal lunedì al venerdì.</p>
+    </div>
+
+    <div class="corsi-grid">
+      <article class="corso corso-lg" style="--img:url('{{ '/assets/img/show-latino.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Salsa e caraibici</h3>
+          <p>Salsa cubana e portoricana, rueda, merengue e reggaeton. Corsi dal base all'avanzato e salsa portoricana open.</p>
+        </div>
+      </article>
+      <article class="corso" style="--img:url('{{ '/assets/img/sala-lezione.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Bachata fusion</h3>
+          <p>Il ballo di coppia più amato del momento: sensuale, musicale, adatto a tutti.</p>
+        </div>
+      </article>
+      <article class="corso" style="--img:url('{{ '/assets/img/abbraccio-kizomba.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Kizomba, semba, zouk</h3>
+          <p>Dall'Angola alla pista: connessione, abbraccio e ritmo. Livelli intermedio e avanzato.</p>
+        </div>
+      </article>
+      <article class="corso corso-lg" style="--img:url('{{ '/assets/img/tango-argentino.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Tango argentino, milonga, vals</h3>
+          <p>Con Roberto Furlan e Flavia Granito. Corsi di tutti i livelli e milonghe durante l'anno.</p>
+        </div>
+      </article>
+      <article class="corso" style="--img:url('{{ '/assets/img/roberto-flavia.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Liscio e balli da sala</h3>
+          <p>Valzer, mazurca, polka e standard: la tradizione del ballo di coppia.</p>
+        </div>
+      </article>
+      <article class="corso" style="--img:url('{{ '/assets/img/ragazze-show.jpg' | relative_url }}')">
+        <div class="corso-body">
+          <h3>Ragazzi, street e danza</h3>
+          <p>Latino per ragazzi, street dance, hip hop e danza moderna per i più giovani.</p>
+        </div>
+      </article>
+    </div>
+
+    <ul class="tags">
+      <li>Show dance</li><li>Gestualità femminile</li><li>Portamento maschile</li><li>Pilates</li><li>Ginnastica e fitness</li><li>Zumba</li><li>Ballo agonistico</li>
+    </ul>
+
+    <div class="cta-box">
+      <div>
+        <h3>Non sai da dove cominciare?</h3>
+        <p>Scrivici: ti diciamo giorni e orari aggiornati e ti aspettiamo per una lezione di prova.</p>
+      </div>
+      <a class="btn btn-gold" href="{{ wa_prova }}" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SIAMO -->
+<section class="section section-dark" id="chi-siamo">
+  <div class="wrap about">
+    <div class="about-media">
+      <img class="about-main" src="{{ '/assets/img/roberto-flavia-studio.jpg' | relative_url }}" alt="Roberto Furlan e Flavia Granito" loading="lazy">
+      <img class="about-small" src="{{ '/assets/img/roma-kizomba-festival.jpg' | relative_url }}" alt="Flavia e Roberto al Roma Kizomba Festival" loading="lazy">
+    </div>
+    <div class="about-text">
+      <p class="eyebrow">L'accademia</p>
+      <h2 class="h-display">Roberto Furlan<br><em>&amp; Flavia Granito</em></h2>
+      <p>La Dance Academy Nueva Clave nasce a Gradisca d'Isonzo come sezione del circolo culturale Zorutti ed è stata tra le prime realtà della provincia di Gorizia a portare i balli di coppia caraibici. Oggi è un'<strong>associazione sportiva dilettantistica</strong>, affiliata ACSI e MSP Italia, con sede nel Centro Commerciale La Fortezza: tre sale, insegnanti qualificati, uno staff di sala e segreteria attento e tanti soci che ballano con noi da anni.</p>
+      <p>Promuoviamo la danza sportiva a livello amatoriale e agonistico, prepariamo spettacoli e organizziamo serate, uscite e attività ricreative per i soci.</p>
+      <blockquote>
+        «La gente arriva qui stressata dai propri problemi e se ne va con il sorriso.»
+        <cite>Flavia Granito</cite>
+      </blockquote>
+    </div>
+  </div>
+  <figure class="wrap staff">
+    <img src="{{ '/assets/img/staff-2025.jpg' | relative_url }}" alt="Lo staff della Dance Academy Nueva Clave" loading="lazy">
+    <figcaption>Lo staff della Dance Academy Nueva Clave, stagione 2025/26</figcaption>
+  </figure>
+</section>
+
+<!-- EVENTI -->
+<section class="section" id="eventi">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Serate, festival, show</p>
+        <h2 class="h-display">Eventi</h2>
+      </div>
+      <a class="btn btn-line" href="{{ '/eventi/' | relative_url }}">Tutti gli eventi</a>
+    </div>
+    <div class="ev-grid">
+      {% assign recenti = site.eventi | sort: 'date' | reverse %}
+      {% for ev in recenti limit: 6 %}
+        {% include card-evento.html ev=ev %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section class="section section-dark" id="galleria">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">In sala e sul palco</p>
+        <h2 class="h-display">Galleria</h2>
+      </div>
+      <a class="btn btn-line" href="{{ site.contatti.instagram }}" target="_blank" rel="noopener">Seguici su Instagram</a>
+    </div>
+    <div class="gallery">
+      {% assign foto = "festival-danza-gruppo.jpg|Festival della Danza di Monfalcone,show-latino.jpg|Show latino,sala-stage.jpg|Stage in sala,tango-argentino.jpg|Tango argentino,lezione-tango.jpg|Lezione di tango,ragazze-show.jpg|Show dei ragazzi,festival-danza-tango.jpg|Tango al Festival della Danza,sala-lezione.jpg|Lezione di gruppo,abbraccio-kizomba.jpg|Kizomba" | split: "," %}
+      {% for f in foto %}
+        {% assign p = f | split: "|" %}
+        <a href="{{ '/assets/img/' | append: p[0] | relative_url }}" data-lightbox class="g-item">
+          <img src="{{ '/assets/img/' | append: p[0] | relative_url }}" alt="{{ p[1] }}" loading="lazy">
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="section" id="contatti">
+  <div class="wrap contact">
+    <div>
+      <p class="eyebrow">Ti aspettiamo</p>
+      <h2 class="h-display">Contatti</h2>
+      <ul class="contact-list">
+        <li><span>Indirizzo</span>{{ site.contatti.struttura }}<br>{{ site.contatti.indirizzo }}, {{ site.contatti.citta }}<br><small>Dall'A4: uscita Villesse – Gradisca d'Isonzo</small></li>
+        <li><span>Iscrizioni e info</span><a href="tel:{{ site.contatti.cellulare_link }}">{{ site.contatti.cellulare }}</a> (Flavia, anche WhatsApp)</li>
+        <li><span>Telefono</span><a href="tel:{{ site.contatti.telefono_link }}">{{ site.contatti.telefono }}</a></li>
+        <li><span>Email</span><a href="mailto:{{ site.contatti.email }}">{{ site.contatti.email }}</a></li>
+      </ul>
+      <div class="hero-cta">
+        <a class="btn btn-gold" href="{{ wa_prova }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-line" href="{{ site.contatti.maps }}" target="_blank" rel="noopener">Google Maps</a>
+        <a class="btn btn-line" href="{{ site.contatti.waze }}" target="_blank" rel="noopener">Waze</a>
+      </div>
+    </div>
+    <div class="map">
+      <iframe title="Mappa Dance Academy Nueva Clave" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Dance%20Academy%20NuevaClave%20Asd%2C%20Via%20Udine%2027%2C%20Gradisca%20d%27Isonzo&z=15&output=embed"></iframe>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+layout: default
+body_class: page-evento
+---
+{%- assign fine = page.data_fine | default: page.date -%}
+{%- assign url_assoluto = page.url | absolute_url -%}
+{%- assign img_assoluta = page.locandina | absolute_url -%}
+{%- assign gc_start = page.date | date: "%Y%m%d" -%}
+{%- assign gc_end = fine | date: "%s" | plus: 86400 | date: "%Y%m%d" -%}
+{%- capture gc_dettagli -%}{{ page.descrizione }} {{ page.orario }} – {{ url_assoluto }}{%- endcapture -%}
+{%- capture gc_luogo -%}{{ page.luogo }}, {{ page.citta }}{%- endcapture -%}
+{%- capture testo_share -%}{{ page.title }} – {% include data-evento.html ev=page %} – {{ page.luogo }}, {{ page.citta }}{%- endcapture -%}
+
+<section class="ev-hero">
+  <div class="ev-hero-bg" style="background-image:url('{{ page.locandina | relative_url }}')"></div>
+  <div class="wrap ev-layout">
+    <figure class="ev-locandina">
+      <a href="{{ page.locandina | relative_url }}" data-lightbox>
+        <img src="{{ page.locandina | relative_url }}" alt="Locandina: {{ page.title | escape }}">
+      </a>
+    </figure>
+
+    <div class="ev-info" data-start="{{ page.date | date: '%Y-%m-%d' }}" data-end="{{ fine | date: '%Y-%m-%d' }}">
+      <a class="back" href="{{ '/eventi/' | relative_url }}">← Tutti gli eventi</a>
+      <span class="ev-badge ev-badge-inline" data-badge></span>
+      <h1>{{ page.title }}</h1>
+
+      <ul class="ev-facts">
+        <li><span>Quando</span>{% include data-evento.html ev=page %}</li>
+        {% if page.orario %}<li><span>Orario</span>{{ page.orario }}</li>{% endif %}
+        <li><span>Dove</span>{{ page.luogo }}{% if page.citta %}, {{ page.citta }}{% endif %}
+          <a class="mini-link" href="https://www.google.com/maps/search/?api=1&query={{ gc_luogo | url_encode }}" target="_blank" rel="noopener">Apri mappa ↗</a></li>
+      </ul>
+
+      <div class="ev-text">{{ content }}</div>
+
+      <div class="share" data-share
+           data-url="{{ url_assoluto }}"
+           data-title="{{ page.title | escape }}"
+           data-text="{{ testo_share | strip | escape }}"
+           data-image="{{ page.locandina | relative_url }}"
+           data-filename="{{ page.locandina | split: '/' | last }}">
+        <h2>Condividi l'evento</h2>
+        <div class="share-row">
+          <a class="sh sh-fb" target="_blank" rel="noopener"
+             href="https://www.facebook.com/sharer/sharer.php?u={{ url_assoluto | url_encode }}">Facebook</a>
+          <button class="sh sh-ig" type="button" data-share-ig>Instagram</button>
+          <a class="sh sh-wa" target="_blank" rel="noopener"
+             href="https://wa.me/?text={{ testo_share | strip | append: ' ' | append: url_assoluto | url_encode }}">WhatsApp</a>
+          <button class="sh sh-copy" type="button" data-copy>Copia link</button>
+        </div>
+        <div class="share-row share-row-2">
+          <a class="sh sh-ghost" href="{{ page.locandina | relative_url }}" download>⬇ Scarica locandina</a>
+          <a class="sh sh-ghost" target="_blank" rel="noopener"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ page.title | url_encode }}&dates={{ gc_start }}/{{ gc_end }}&details={{ gc_dettagli | url_encode }}&location={{ gc_luogo | url_encode }}&ctz=Europe/Rome">📅 Aggiungi al calendario</a>
+        </div>
+        <p class="share-hint" data-share-hint hidden></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="h-display">Altri eventi</h2>
+      <a class="btn btn-line" href="{{ '/eventi/' | relative_url }}">Vedi tutti</a>
+    </div>
+    <div class="ev-grid">
+      {% assign altri = site.eventi | sort: 'date' | reverse %}
+      {% assign n = 0 %}
+      {% for ev in altri %}
+        {% if ev.url != page.url and n < 3 %}
+          {% include card-evento.html ev=ev %}
+          {% assign n = n | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

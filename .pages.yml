@@ -1,0 +1,53 @@
+# Configurazione del pannello di gestione Pages CMS (https://app.pagescms.org)
+# Permette allo staff di caricare locandine e creare eventi senza toccare il codice.
+media:
+  input: assets/locandine
+  output: /assets/locandine
+
+content:
+  - name: eventi
+    label: Eventi
+    type: collection
+    path: _eventi
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, citta]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Titolo dell'evento
+        type: string
+        required: true
+      - name: locandina
+        label: Locandina (JPG o PNG, meglio verticale)
+        type: image
+        required: true
+      - name: date
+        label: Data dell'evento (o di inizio)
+        type: date
+        required: true
+      - name: data_fine
+        label: Data di fine (solo se dura più giorni)
+        type: date
+      - name: orario
+        label: Orario (es. "Sabato 14 marzo, dalle 21:00")
+        type: string
+      - name: luogo
+        label: Luogo (locale e indirizzo)
+        type: string
+        required: true
+      - name: citta
+        label: Città
+        type: string
+        default: "Gradisca d'Isonzo (GO)"
+      - name: descrizione
+        label: Descrizione breve (anteprima social, max 200 caratteri)
+        type: text
+        required: true
+      - name: body
+        label: Testo completo
+        type: rich-text

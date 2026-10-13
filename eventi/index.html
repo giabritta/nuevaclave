@@ -1,0 +1,41 @@
+---
+layout: default
+title: Eventi
+description: "Serate latine, milonghe, festival e show della Dance Academy Nueva Clave di Gradisca d'Isonzo. Scopri i prossimi eventi e condividili con i tuoi amici."
+body_class: page-eventi
+---
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Serate, festival, show</p>
+    <h1 class="h-display">Eventi</h1>
+    <p class="section-lead">Dove ballare con la Dance Academy Nueva Clave. Apri un evento per vedere la locandina e condividerla su Facebook, Instagram e WhatsApp.</p>
+  </div>
+</section>
+
+{% assign tutti = site.eventi | sort: 'date' %}
+<section class="section section-tight">
+  <div class="wrap">
+    <h2 class="h-sub">Prossimi eventi</h2>
+    <div class="ev-grid" data-list="upcoming">
+      {% for ev in tutti %}{% include card-evento.html ev=ev %}{% endfor %}
+    </div>
+    <p class="empty" data-empty hidden>Nuovi eventi in arrivo: seguici su <a href="{{ site.contatti.facebook }}" target="_blank" rel="noopener">Facebook</a> e <a href="{{ site.contatti.instagram }}" target="_blank" rel="noopener">Instagram</a>.</p>
+  </div>
+</section>
+
+<section class="section section-dark section-tight">
+  <div class="wrap">
+    <h2 class="h-sub">Archivio</h2>
+    <div class="ev-grid ev-grid-past" data-list="past"></div>
+  </div>
+</section>
+
+<section class="section section-tight">
+  <div class="wrap cta-box">
+    <div>
+      <h3>Organizzi una serata con noi?</h3>
+      <p>Lo staff può pubblicare una nuova locandina in pochi minuti: diventa subito una pagina evento pronta da condividere.</p>
+    </div>
+    <a class="btn btn-line" href="{{ '/carica/' | relative_url }}">Carica una locandina</a>
+  </div>
+</section>

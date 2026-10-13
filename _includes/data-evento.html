@@ -1,0 +1,12 @@
+{%- comment -%} Uso: include data-evento.html ev=evento → "ven 18 – dom 20 settembre 2026" {%- endcomment -%}
+{%- assign _d = include.ev.date -%}
+{%- assign _g = _d | date: "%w" | plus: 0 -%}
+{%- assign _m = _d | date: "%-m" | minus: 1 -%}
+{%- if include.ev.data_fine -%}
+  {%- assign _f = include.ev.data_fine -%}
+  {%- assign _gf = _f | date: "%w" | plus: 0 -%}
+  {%- assign _mf = _f | date: "%-m" | minus: 1 -%}
+  dal {{ site.data.it.giorni[_g] }} {{ _d | date: "%-d" }}{% if _m != _mf %} {{ site.data.it.mesi[_m] }}{% endif %} al {{ site.data.it.giorni[_gf] }} {{ _f | date: "%-d" }} {{ site.data.it.mesi[_mf] }} {{ _f | date: "%Y" }}
+{%- else -%}
+  {{ site.data.it.giorni[_g] }} {{ _d | date: "%-d" }} {{ site.data.it.mesi[_m] }} {{ _d | date: "%Y" }}
+{%- endif -%}

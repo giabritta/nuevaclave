@@ -1,0 +1,41 @@
+title: "Dance Academy Nueva Clave"
+tagline: "Scuola di ballo a Gradisca d'Isonzo"
+description: "Salsa, bachata, kizomba, tango argentino, liscio e show dance a Gradisca d'Isonzo (GO). Non serve essere in coppia: prenota la tua lezione di prova."
+url: "https://giabritta.github.io"
+baseurl: "/nuevaclave"
+lang: it
+timezone: Europe/Rome
+
+# Contatti (usati in tutto il sito)
+contatti:
+  indirizzo: "Via Udine 27"
+  struttura: "Centro Commerciale La Fortezza"
+  citta: "34072 Gradisca d'Isonzo (GO)"
+  telefono: "+39 0481 969764"
+  telefono_link: "+390481969764"
+  cellulare: "+39 338 595 7927"
+  cellulare_link: "+393385957927"
+  whatsapp: "393385957927"
+  email: "danceacademync@gmail.com"
+  facebook: "https://www.facebook.com/danceAcademy2020"
+  instagram: "https://www.instagram.com/dance_academy_nc/"
+  maps: "https://www.google.com/maps/place/Dance+Academy+NuevaClave+Asd/@45.88432,13.4800181,18z"
+  waze: "https://waze.com/ul/hu21t48zzs"
+
+collections:
+  eventi:
+    output: true
+    permalink: /eventi/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: eventi
+    values:
+      layout: evento
+
+future: true
+markdown: kramdown
+exclude:
+  - README.md
+  - .pages.yml

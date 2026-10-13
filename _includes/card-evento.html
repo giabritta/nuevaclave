@@ -1,0 +1,15 @@
+{%- assign ev = include.ev -%}
+{%- assign fine = ev.data_fine | default: ev.date -%}
+{%- assign _m = ev.date | date: "%-m" | minus: 1 -%}
+<article class="ev-card" data-start="{{ ev.date | date: '%Y-%m-%d' }}" data-end="{{ fine | date: '%Y-%m-%d' }}">
+  <a href="{{ ev.url | relative_url }}" class="ev-poster">
+    <img src="{{ ev.locandina | relative_url }}" alt="Locandina: {{ ev.title | escape }}" loading="lazy">
+    <span class="ev-date"><b>{{ ev.date | date: "%-d" }}</b>{{ site.data.it.mesi_brevi[_m] }}</span>
+    <span class="ev-badge" data-badge></span>
+  </a>
+  <div class="ev-body">
+    <p class="ev-meta">{% include data-evento.html ev=ev %}</p>
+    <h3><a href="{{ ev.url | relative_url }}">{{ ev.title }}</a></h3>
+    <p class="ev-place">{{ ev.luogo }}{% if ev.citta %} · {{ ev.citta }}{% endif %}</p>
+  </div>
+</article>
